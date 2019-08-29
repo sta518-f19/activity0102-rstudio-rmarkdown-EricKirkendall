@@ -15,7 +15,7 @@ library(datasauRus)
 
 ### Exercise 1
 
-(Type your answer to Exercise 1 here. This exercise does not require any R code.)
+(There are 1843 rows and 3 columns in datasauRus_dozen. There are 3 vairables that are: dataset, x, and y)
 
 ### Exercise 2
 
