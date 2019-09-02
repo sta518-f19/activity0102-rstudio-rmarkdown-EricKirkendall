@@ -2,7 +2,9 @@
 title: "Activity 1.2 - RStudio and R Markdown"
 author: "Eric Kirkendall"
 date: "8/29/2019"
-output: html_document
+output: 
+  html_document: 
+    highlight: monochrome
 ---
 
 ### Load packages
@@ -42,17 +44,17 @@ Plotting dataset "star"
 
 ```{r plot-star}
 star_data <- datasaurus_dozen %>%
-+     filter(dataset == "star")
+   filter(dataset == "star")
  
- ggplot(data = star_data, mapping = aes(x = x, y = y)) +
-+     geom_point()
+ggplot(data = star_data, mapping = aes(x = x, y = y)) +
+   geom_point()
 ```
 
 Calculating R for Dataset "star"
 
 ```{r cor-star}
-  star_data %>%
-+ summarize(r = cor(x,y))
+star_data %>%
+ summarize(r = cor(x, y))
 ```
 R = -0.0630
 R values are very similar but this r value is slightly weaker than that of Dino.
@@ -62,19 +64,35 @@ Plotting dataset "cirlce"
 
 ```{r plot-circle}
 circle_data <- datasaurus_dozen %>%
-  + filter(dataset == "circle")
+  filter(dataset == "circle")
 ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
-  + geom_point()
+ geom_point()
 ```
 
 Calculating R for dataset "circle
 
 ```{r cor-circle}
 circle_data %>%
-+ summarize(r = cor(x,y))
+  summarize(r = cor(x,y))
 ```
 R = -0.0683
 This R value is still small but slightly stronger than those of Dino and Star.
 ### Exercise 5
 
-(Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.)
+Plots of all data
+
+```{r plot- all}
+ggplot(data = datasaurus_dozen, aes(x = x, y = y, color = dataset)) +
+ geom_point() + 
+ facet_wrap(~ dataset, ncol = 3) + 
+ theme(legend.position = "none")
+```
+
+Correlation data of all data
+
+``` {r corr-all}
+datasaurus_dozen %>%
+ group_by(dataset) %>%
+ summarize(r = cor(x, y)) %>%
+ print(13)
+```
